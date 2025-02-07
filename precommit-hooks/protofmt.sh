@@ -19,7 +19,7 @@ fi
 for file in $changed_files; do
   echo "Formatting $file in place..."
   protofmt -o "$file"
+  git add "$file"
 done
 
 echo "All .proto files have been formatted."
-exit 0
