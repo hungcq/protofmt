@@ -34,6 +34,17 @@ To format a .proto file and overwrite the original file with the formatted versi
 protofmt -o path/to/file.proto
 ```
 
+### Pre-commit Hook
+To use the tool as a [pre-commit](https://pre-commit.com/) hook, add this to your .pre-commit-config.yaml:
+```yaml
+default_install_hook_types: [pre-commit, prepare-commit-msg]
+repos:
+  - repo: https://github.com/hungcq/protofmt.git
+    rev: latest
+    hooks:
+      - id: protofmt
+```
+
 ## Example
 Given a my_msg.proto file with fields like:
 
@@ -41,26 +52,26 @@ Given a my_msg.proto file with fields like:
 syntax = "proto3";
 
 message ParentMsg {
-	int64 a = 1;
-	string long_field_name = 2;
-	bool b = 3;
+  int64 a = 1;
+  string long_field_name = 2;
+  bool b = 3;
 
-	oneof event {
-		TestMsg test_msg = 10;
-		SubMsgWithVeryLongName sub_msg_with_very_long_name = 11;
-	}
+  oneof event {
+    TestMsg test_msg = 10;
+    SubMsgWithVeryLongName sub_msg_with_very_long_name = 11;
+  }
 }
 
 message TestMsg {
-	int64 c = 1;
-	string long_field_name = 2;
-	bool d = 3;
-	float test = 4;
+  int64 c = 1;
+  string long_field_name = 2;
+  bool d = 3;
+  float test = 4;
 }
 
 message SubMsgWithVeryLongName {
-	int64 x = 1;
-	bool another_field_name = 2;
+  int64 x = 1;
+  bool another_field_name = 2;
 }
 ```
 
@@ -74,26 +85,26 @@ will reformat the file so that all field types, names, and the equal signs are a
 syntax = "proto3";
 
 message ParentMsg {
-	int64  a               = 1;
-	string long_field_name = 2;
-	bool   b               = 3;
+  int64  a               = 1;
+  string long_field_name = 2;
+  bool   b               = 3;
 
-	oneof event {
-		TestMsg                test_msg                    = 10;
-		SubMsgWithVeryLongName sub_msg_with_very_long_name = 11;
-	}
+  oneof event {
+    TestMsg                test_msg                    = 10;
+    SubMsgWithVeryLongName sub_msg_with_very_long_name = 11;
+  }
 }
 
 message TestMsg {
-	int64  c               = 1;
-	string long_field_name = 2;
-	bool   d               = 3;
-	float  test            = 4;
+  int64  c               = 1;
+  string long_field_name = 2;
+  bool   d               = 3;
+  float  test            = 4;
 }
 
 message SubMsgWithVeryLongName {
-	int64 x                  = 1;
-	bool  another_field_name = 2;
+  int64 x                  = 1;
+  bool  another_field_name = 2;
 }
 ```
 

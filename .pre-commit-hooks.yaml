@@ -1,0 +1,6 @@
+- id: protofmt
+  name: protofmt
+  description: Format proto files
+  entry: precommit-hooks/protofmt.sh
+  language: script
+  stages: [pre-commit]
